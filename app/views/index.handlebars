@@ -1,47 +1,64 @@
-<h1>Mike's Meats & Burgers!</h1>
 
-<h2>To Be Eaten Menu!</h2>
+<div class="page-header">
+  <h1>Mike's Meats & Burgers!</h1>
+  
+</div>
 
-<ul>
-  {{#each cats}}
-    {{#unless this.devoured}}
-      <li>
-        {{this.name}}
-        {{!-- This *should* switch the value of devoured to "true" --}}
-        <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">Devour Me!</button>
-        </form>
+<div class="row">
+  <div class="col-md-6">
+    <h2>To Be Eaten Menu!</h2>
+    <ul>
+      {{#each burgers}}
+        {{#unless this.devoured}}
+          <li class= "to-eat">
+            {{this.burger_name}}
+            {{!-- This *should* switch the value of devoured to "true" --}}
+            <form action="/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="devoured" value="true">
+              <button type="submit">Devour Me!</button>
+            </form>
 
-        <form action="/{{this.id}}" method="UPDATE">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">Devour Me!</button>
-        </form>
+            {{!-- <form action="/{{this.id}}" method="UPDATE">
+              <button type="submit">Update Me!</button>
+              <input type="text" name="update">
+            </form> --}}
 
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Already Eaten Burgers</h2>
-
-<ul>
-  {{#each cats}}
-    {{#if this.devoured}}
-      <li>
-        {{this.name}}
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-update-form" action="/" method="POST">
-
-  <div class="form-group">
-    <label for="bn">Burger Name:</label>
-    <input type="text" id="bn" name="name">
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+    
   </div>
+  <div class="col-md-6">
+      <h2>Already Eaten Burgers</h2>
 
-  <button type="submit">Add To List!</button>
-</form>
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>
+              {{this.burger_name}}
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2>Add a Burger</h2>
+    <form class="create-update-form" action="/" method="POST">
+
+      <div class="form-group">
+        <label for="bn">Burger Name:</label>
+        <input type="text" id="bn" name="burger_name">
+      </div>
+
+      <button type="submit">Add To List!</button>
+    </form>    
+  </div>
+  <div class="col-md-4"></div>
+
+</div>
+
+
